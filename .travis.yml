@@ -14,14 +14,14 @@ before_install:
   - tar zxvf trivy_0.0.13_Linux-64bit.tar.gz
 
 script:
-  - docker build -t "$REPO:${TRAVIS_BUILD_NUMBER}" -f Dockerfile $(pwd)
-  - ./trivy --exit-code 0 --severity HIGH --quiet "$REPO:${TRAVIS_BUILD_NUMBER}"
-  - ./trivy --exit-code 1 --severity CRITICAL --quiet "$REPO:${TRAVIS_BUILD_NUMBER}"
+  - docker build -t "${TRAVIS_BUILD_NUMBER}" -f Dockerfile $(pwd)
+  - ./trivy --exit-code 0 --severity HIGH --quiet "${TRAVIS_BUILD_NUMBER}"
+  - ./trivy --exit-code 1 --severity CRITICAL --quiet "${TRAVIS_BUILD_NUMBER}"
   - docker run --rm -t "${TRAVIS_BUILD_NUMBER}" wifite -h
 
 after_success:
   - export $(cat .env)
-  - export ID=`docker run --rm -dt "$REPO:$TRAVIS_BUILD_NUMBER" sh`
+  - export ID=`docker run --rm -dt "$TRAVIS_BUILD_NUMBER" sh`
   - docker export "$ID" | docker import - "$REPO:$VERSION"
   - docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
   - docker tag "$REPO:$VERSION" "$REPO:$COMMIT"
