@@ -14,11 +14,11 @@ kali + wifite 398MB (with export / import technique)
 #### How to use
 
 ```sh
-docker run -it --rm --net="host" --privileged afsmnghr/wifite wifite
+docker run -it --rm --net='host' --privileged afsmnghr/wifite wifite
 ```
 
-For advanced usage:
+#### For advanced usage
 
 ```sh
-docker run -it --rm --net="host" --privileged afsmnghr/wifite sh
+docker run -it --rm --net='host' --privileged afsmnghr/wifite sh
 ```
