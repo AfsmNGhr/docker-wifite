@@ -4,7 +4,7 @@ RUN apk --update add pciutils && \
     apk add --no-cache \
         --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         reaver-wps-fork-t6x && \
-    apk add --virtual .base build-base git linux-headers \
+    apk add --virtual .base build-base git bash linux-headers \
             openssl-dev zlib-dev curl-dev && \
     git clone https://github.com/derv82/wifite2.git --depth=1 && \
     cd wifite2 && \
