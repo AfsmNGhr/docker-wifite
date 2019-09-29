@@ -5,12 +5,10 @@ RUN apk --update add pciutils && \
         --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         reaver-wps-fork-t6x tshark && \
     apk add --virtual .base build-base git findutils linux-headers \
-        openssl-dev zlib-dev curl-dev && \
+        openssl-dev zlib-dev curl-dev automake autoconf && \
     git clone https://github.com/alobbs/macchanger --depth=1 && \
     cd macchanger && \
     ./autogen.sh && \
-    ./configure && \
-    make check && \
     make && \
     make install && \
     cd / && \
