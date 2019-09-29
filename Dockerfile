@@ -3,9 +3,16 @@ FROM python:3.7.4-alpine3.10
 RUN apk --update add pciutils && \
     apk add --no-cache \
         --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-        reaver-wps-fork-t6x && \
+        reaver-wps-fork-t6x tshark && \
     apk add --virtual .base build-base git findutils linux-headers \
-            openssl-dev zlib-dev curl-dev && \
+        openssl-dev zlib-dev curl-dev && \
+    git clone https://github.com/alobbs/macchanger --depth=1 && \
+    cd macchanger && \
+    ./configure && \
+    make check && \
+    make && \
+    make install && \
+    cd / && \
     git clone https://github.com/derv82/wifite2.git --depth=1 && \
     cd wifite2 && \
     python setup.py install && \
@@ -25,5 +32,5 @@ RUN apk --update add pciutils && \
     make install && \
     cd / && \
     apk del .base && \
-    rm -rf /hcxtools/ /hcxdumptool/ /hashcat/ /wifite2/ /tmp/* /var/tmp/* \
+    rm -rf /macchanger/ /hcxtools/ /hcxdumptool/ /hashcat/ /wifite2/ /tmp/* /var/tmp/* \
            /usr/share/man /tmp/* /var/tmp/* /var/cache/apk/* /var/log/* ~/.cache
