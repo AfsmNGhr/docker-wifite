@@ -1,4 +1,4 @@
-FROM python:3.7.4-alpine3.10
+FROM alpine:3.10.2
 
 RUN apk --update add pciutils && \
     apk add --no-cache \
@@ -8,6 +8,7 @@ RUN apk --update add pciutils && \
         openssl-dev zlib-dev curl-dev && \
     git clone https://github.com/alobbs/macchanger --depth=1 && \
     cd macchanger && \
+    ./autogen.sh && \
     ./configure && \
     make check && \
     make && \
@@ -15,7 +16,7 @@ RUN apk --update add pciutils && \
     cd / && \
     git clone https://github.com/derv82/wifite2.git --depth=1 && \
     cd wifite2 && \
-    python setup.py install && \
+    python3 setup.py install && \
     cd / && \
     git clone https://github.com/ZerBea/hcxdumptool.git --depth=1 && \
     cd hcxdumptool && \
