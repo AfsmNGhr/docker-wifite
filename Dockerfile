@@ -6,7 +6,7 @@ RUN apk --update add pciutils && \
         reaver-wps-fork-t6x tshark && \
     apk add --virtual .base build-base git findutils linux-headers \
         openssl-dev zlib-dev curl-dev wget && \
-    wget -q https://github.com/alobbs/macchanger/releases/download/1.7.0/macchanger-1.7.0.tar.gz \
+    wget -q https://ftp.gnu.org/gnu/macchanger/macchanger-1.6.0.tar.gz \
          -O macchanger.tar.gz && \
     tar xzf macchanger.tar.gz && \
     rm macchanger.tar.gz && \
