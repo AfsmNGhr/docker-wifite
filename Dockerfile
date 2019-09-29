@@ -3,18 +3,9 @@ FROM alpine:3.10.2
 RUN apk --update add pciutils && \
     apk add --no-cache \
         --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-        reaver-wps-fork-t6x tshark && \
+        reaver-wps-fork-t6x tshark macchanger && \
     apk add --virtual .base build-base git findutils linux-headers \
-        openssl-dev zlib-dev curl-dev wget && \
-    wget -q https://ftp.gnu.org/gnu/macchanger/macchanger-1.6.0.tar.gz \
-         -O macchanger.tar.gz && \
-    tar xzf macchanger.tar.gz && \
-    rm macchanger.tar.gz && \
-    cd macchanger* && \
-    ./configure && \
-    make && \
-    make install && \
-    cd / && \
+        openssl-dev zlib-dev curl-dev && \
     git clone https://github.com/derv82/wifite2.git --depth=1 && \
     cd wifite2 && \
     python3 setup.py install && \
