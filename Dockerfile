@@ -5,9 +5,12 @@ RUN apk --update add pciutils && \
         --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         reaver-wps-fork-t6x tshark && \
     apk add --virtual .base build-base git findutils linux-headers \
-        openssl-dev zlib-dev curl-dev automake autoconf && \
-    git clone https://github.com/alobbs/macchanger --depth=1 && \
-    cd macchanger && \
+        openssl-dev zlib-dev curl-dev automake autoconf wget && \
+    wget -q https://github.com/alobbs/macchanger/releases/download/1.7.0/macchanger-1.7.0.tar.gz \
+         -O macchanger.tar.gz && \
+    tar xzf macchanger.tar.gz && \
+    rm macchanger.tar.gz && \
+    cd macchanger* && \
     ./autogen.sh && \
     make && \
     make install && \
@@ -31,5 +34,5 @@ RUN apk --update add pciutils && \
     make install && \
     cd / && \
     apk del .base && \
-    rm -rf /macchanger/ /hcxtools/ /hcxdumptool/ /hashcat/ /wifite2/ /tmp/* /var/tmp/* \
+    rm -rf /macchanger*/ /hcxtools/ /hcxdumptool/ /hashcat/ /wifite2/ /tmp/* /var/tmp/* \
            /usr/share/man /tmp/* /var/tmp/* /var/cache/apk/* /var/log/* ~/.cache
