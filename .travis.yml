@@ -10,9 +10,8 @@ env:
     - REPO=afsmnghr/wifite
 
 before_install:
-  - export VERSION=$(curl --silent "https://api.github.com/repos/aquasecurity/trivy/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
-  - wget https://github.com/aquasecurity/trivy/releases/download/v${VERSION}/trivy_${VERSION}_Linux-64bit.tar.gz
-  - tar zxvf trivy_${VERSION}_Linux-64bit.tar.gz
+  - wget https://github.com/aquasecurity/trivy/releases/download/v0.1.7/trivy_0.1.7_Linux-64bit.tar.gz
+  - tar zxvf trivy_0.1.7_Linux-64bit.tar.gz
 
 script:
   - docker build -t "$REPO:${TRAVIS_BUILD_NUMBER}" -f Dockerfile $(pwd)
