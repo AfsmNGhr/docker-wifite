@@ -32,4 +32,4 @@ RUN apk --update add pciutils && \
          -exec sh -c 'file "{}" | grep -q "not stripped" && strip -s "{}"' \; && \
     apk del .base && \
     rm -rf /hcxtools/ /hcxdumptool/ /hashcat/ /wifite2/ /tmp/* /var/tmp/* \
-           /usr/share/man /usr/local/share/doc /tmp/* /var/tmp/* /var/cache/apk/* /var/log/* ~/.cache
+           /usr/share/man /usr/local/share/doc /var/cache/apk/* /var/log/* ~/.cache
